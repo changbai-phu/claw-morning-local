@@ -9,6 +9,8 @@ Claw-Morning Local is a CLI tool that generates daily research briefings by fetc
 ## Short Demo
 ![Claw-Morning-Short-Demo-gif](claw-morning-short-demo.gif)
 
+![Claw-Morning-Research-Short-Demo-gif](claw-morning-research-short-demo.gif)
+
 ## Features
 
 - **ArXiv Papers** - Quantum Computing, Quantum Satellite, Quantum+ML, ML, Security
