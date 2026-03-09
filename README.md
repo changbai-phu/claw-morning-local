@@ -1,22 +1,25 @@
-# 🤖 Claw-Morning Local
+# Claw-Morning Local
 
-> Standalone version of Claw-Morning that runs **WITHOUT AI dependency**.
+> Standalone version of Claw-Morning that runs **WITHOUT AI dependency**. (Local version of one of skills used in my openclaw - if interested, checkout my `claw-skills` for AI version)
 
-## 📋 Overview
+## Overview
 
-Claw-Morning Local is a CLI tool that generates daily research briefings by fetching data from public APIs (ArXiv, GitHub, Semantic Scholar, HuggingFace) and generating beautiful HTML reports.
+Claw-Morning Local is a CLI tool that generates daily research briefings by fetching data from public APIs (ArXiv, GitHub, Semantic Scholar, HuggingFace) and generating HTML reports.
 
-## ✨ Features
+## Short Demo
+![Claw-Morning-Short-Demo-gif](claw-morning-short-demo.gif)
 
-- 📚 **ArXiv Papers** - Quantum Computing, Quantum Satellite, Quantum+ML, ML, Security
-- 🏆 **Semantic Scholar** - Top cited papers by field
-- ⭐ **GitHub Trending** - Hot repositories
-- 📰 **AI/ML News** - Industry updates
-- 🎨 **Beautiful HTML** - Responsive design with dark theme
-- 📱 **Mobile Friendly** - Works on desktop and mobile
-- 📤 **Feishu Support** - Send directly to Feishu (optional)
+## Features
 
-## 📁 Structure
+- **ArXiv Papers** - Quantum Computing, Quantum Satellite, Quantum+ML, ML, Security
+- **Semantic Scholar** - Top cited papers by field
+- **GitHub Trending** - Hot repositories
+- **AI/ML News** - Industry updates
+- **Beautiful HTML** - Responsive design with dark theme
+- **Mobile Friendly** - Works on desktop and mobile
+- **Feishu Support** - Send directly to Feishu (optional)
+
+## Structure
 
 ```
 claw-morning-local/
@@ -40,7 +43,7 @@ claw-morning-local/
 └── README.md           # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install Dependencies
 
@@ -82,7 +85,7 @@ chmod +x run.sh
 ./run.sh --date 2026-03-09
 ```
 
-## 🔧 API Modules
+## API Modules
 
 ### src/arxiv_search.py
 ```python
@@ -152,7 +155,7 @@ send_message(token, user_id, "Hello!")
 send_file(token, user_id, "report.html")
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables (.env)
 
@@ -181,7 +184,7 @@ FEISHU_USER_ID=your_user_id
 OUTPUT_DIR=./output
 ```
 
-## 🎨 HTML Template
+## HTML Template
 
 The template uses:
 - Responsive grid layout
@@ -191,7 +194,7 @@ The template uses:
 
 Template file: `templates/template-v5.html`
 
-## 📊 Output
+## Output
 
 Generates an HTML file with:
 - ArXiv papers by category
@@ -201,21 +204,21 @@ Generates an HTML file with:
 - Daily quote
 - Recommendations
 
-## 🔄 Updating
+## Updating
 
 To get the latest version:
 1. Download new release from GitHub
 2. Replace local files
 3. Update `requirements.txt` if needed
 
-## 📝 License
+## License
 
 MIT
 
-## 🤝 Contributing
+## Contributing
 
 Pull requests welcome! Please ensure tests pass before submitting.
 
-## ❓ Support
+## Support
 
 For issues, please open an issue on GitHub.
