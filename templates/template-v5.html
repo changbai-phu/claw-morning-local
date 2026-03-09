@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claw-Morning - Daily Briefing</title>
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --bg-dark: #1a1a2e;
+            --bg-light: #f8f9fa;
+            --text-dark: #1a1a2e;
+            --text-light: #666;
+            --accent-quantum: #00b894;
+            --accent-ml: #0984e3;
+            --accent-security: #d63031;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            background: var(--bg-dark);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .header .date {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 8px;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: rgba(255,255,255,0.95);
+            padding: 10px 20px;
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            position: sticky;
+            top: 90px;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 13px;
+            white-space: nowrap;
+            padding: 5px 10px;
+            border-radius: 15px;
+            background: #f0f0f0;
+            transition: all 0.2s;
+        }
+        
+        .nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .section-icon { font-size: 24px; margin-right: 10px; }
+        
+        .section h2 {
+            font-size: 18px;
+            color: var(--text-dark);
+            flex: 1;
+        }
+        
+        .lang-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 22px; }
+            .nav { top: 70px; }
+            .section { padding: 15px; }
+        }
+        
+        /* Paper Cards */
+        .paper-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .paper-card.quantum { border-left-color: var(--accent-quantum); }
+        .paper-card.ml { border-left-color: var(--accent-ml); }
+        .paper-card.security { border-left-color: var(--accent-security); }
+        
+        .paper-card .title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .paper-card .title a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .paper-card .title a:hover {
+            text-decoration: underline;
+        }
+        
+        .paper-card .meta {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        .paper-card .summary {
+            font-size: 13px;
+            color: var(--text-dark);
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .paper-card .summary strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        /* Semantic Scholar */
+        .semantic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        @media (max-width: 900px) {
+            .semantic-grid { grid-template-columns: 1fr; }
+        }
+        
+        .semantic-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .semantic-card .rank {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .semantic-card .field {
+            font-size: 11px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .semantic-card .title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .semantic-card .title a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .semantic-card .citation {
+            background: #fff3cd;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+        }
+        
+        /* News Items */
+        .news-item {
+            padding: 12px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .news-bullet {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            margin-top: 6px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .news-content { flex: 1; }
+        
+        .news-title {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .news-title a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .news-desc {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+        
+        /* GitHub */
+        .github-card {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .github-rank {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary);
+            width: 30px;
+        }
+        
+        .github-info { flex: 1; }
+        
+        .github-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .github-name a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        
+        .github-desc {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+        
+        .github-stars {
+            background: #ffeaa7;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #d63031;
+        }
+        
+        /* Quote */
+        .quote-box {
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .quote-text {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .quote-author {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 12px;
+        }
+        
+        /* History Section */
+        .history-section {
+            background: #f0f0f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .history-section h3 {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+        }
+        
+        /* Research Button */
+        .research-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        
+        .research-btn:hover {
+            opacity: 0.9;
+        }
+        
+        /* Two Column Research Mode */
+        .research-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            min-height: 80vh;
+        }
+        
+        @media (max-width: 900px) {
+            .research-container { grid-template-columns: 1fr; }
+        }
+        
+        .research-left, .research-right {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .research-left {
+            background: var(--bg-light);
+        }
+        
+        .research-right {
+            border-left: 4px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📰 CLAW-MORNING</h1>
+        <div class="subtitle">每日科技与研究简报 | Daily Tech & Research Briefing</div>
+        <div class="date">{{DATE}}</div>
+        <a href="claw-research-{{DATE}}.html" class="research-btn">🔬 Research Mode</a>
+    </div>
+    
+    <nav class="nav">
+        <a href="#arxiv">📚 ArXiv</a>
+        <a href="#semantic">🏆 Top Papers</a>
+        <a href="#news">🔥 News</a>
+        <a href="#github">⭐ GitHub</a>
+        <a href="#quote">💬 Quote</a>
+        <a href="#recommend">🎯 Recommend</a>
+        <a href="#history">📜 History</a>
+    </nav>
+    
+    <div class="container">
+        <!-- Section 1: ArXiv -->
+        <div class="section" id="arxiv">
+            <div class="section-header">
+                <span class="section-icon">📚</span>
+                <h2>ArXiv 最新论文</h2>
+                <span class="lang-badge">Latest</span>
+            </div>
+            
+            <div class="grid">
+                <div>
+                    <h3 style="color: var(--accent-quantum); margin-bottom: 15px;">🔬 Quantum Computing</h3>
+                    {{QUANTUM_COMPUTING_PAPERS}}
+                </div>
+                <div>
+                    <h3 style="color: #00b894; margin-bottom: 15px;">🛰️ Quantum Satellite/Comm</h3>
+                    {{QUANTUM_SATELLITE_PAPERS}}
+                </div>
+                <div>
+                    <h3 style="color: #7b1fa2; margin-bottom: 15px;">⚛️ Quantum + ML</h3>
+                    {{QUANTUM_ML_PAPERS}}
+                </div>
+                <div>
+                    <h3 style="color: var(--accent-ml); margin-bottom: 15px;">🤖 Machine Learning</h3>
+                    {{ML_PAPERS}}
+                </div>
+                <div>
+                    <h3 style="color: var(--accent-security); margin-bottom: 15px;">🔒 Security</h3>
+                    {{SECURITY_PAPERS}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 2: Semantic Scholar -->
+        <div class="section" id="semantic">
+            <div class="section-header">
+                <span class="section-icon">🏆</span>
+                <h2>Semantic Scholar Top 3</h2>
+                <span class="lang-badge">Hot</span>
+            </div>
+            
+            <div class="semantic-grid">
+                {{SEMANTIC_SCHOLAR}}
+            </div>
+            
+            <!-- History Subsection -->
+            <div class="history-section" id="history">
+                <h3>📜 历史推荐 | Previous Recommendations</h3>
+                {{HISTORY}}
+            </div>
+        </div>
+        
+        <!-- Section 3: AI/ML News -->
+        <div class="section" id="news">
+            <div class="section-header">
+                <span class="section-icon">🔥</span>
+                <h2>AI/ML 业界动态</h2>
+                <span class="lang-badge">Trending</span>
+            </div>
+            {{AI_ML_NEWS}}
+        </div>
+        
+        <!-- Section 4: GitHub Trending -->
+        <div class="section" id="github">
+            <div class="section-header">
+                <span class="section-icon">⭐</span>
+                <h2>GitHub Trending</h2>
+                <span class="lang-badge">New</span>
+            </div>
+            {{GITHUB_TRENDING}}
+        </div>
+        
+        <!-- Section 5: Quote -->
+        <div class="section" id="quote">
+            <div class="section-header">
+                <span class="section-icon">💬</span>
+                <h2>每日名言</h2>
+                <span class="lang-badge">Quote</span>
+            </div>
+            <div class="quote-box">
+                <div class="quote-text">{{QUOTE_TEXT}}</div>
+                <div class="quote-author">— {{QUOTE_AUTHOR}}</div>
+            </div>
+        </div>
+        
+        <!-- Section 6: Recommendation -->
+        <div class="section" id="recommend">
+            <div class="section-header">
+                <span class="section-icon">🎯</span>
+                <h2>推荐内容</h2>
+                <span class="lang-badge">Picked</span>
+            </div>
+            {{RECOMMENDATIONS}}
+            <div style="font-size: 11px; color: #888; margin-top: 15px; text-align: center;">
+                <strong>推荐算法:</strong> Citation (>1000) 40% + Venue Prestige 30% + Year (2024-2026) 20% + Author Impact 10% | 每3天更新
+            </div>
+        </div>
+        
+        <div class="footer">
+            Generated by Claw-Morning | {{TIMESTAMP}}
+        </div>
+    </div>
+</body>
+</html>

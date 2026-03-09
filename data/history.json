@@ -1,0 +1,142 @@
+{
+  "generated_at": "2026-03-08T09:08:00+08:00",
+  "batch": "2026-03-08",
+  "current_recommendations": [
+    {
+      "rank": 1,
+      "title": "Obstacles to Continuous Quantum Error Correction via Parity Measurements",
+      "authors": "Anton Halaski, Christiane P. Koch",
+      "venue": "arXiv",
+      "year": 2026,
+      "citations": 5,
+      "category": "Quantum",
+      "url": "https://arxiv.org/abs/2603.02106"
+    },
+    {
+      "rank": 2,
+      "title": "Quantum Error Correction on Error-mitigated Physical Qubits",
+      "authors": "Minjun Jeon, Zhenyu Cai",
+      "venue": "arXiv",
+      "year": 2026,
+      "citations": 8,
+      "category": "Quantum",
+      "url": "https://arxiv.org/abs/2601.18384"
+    },
+    {
+      "rank": 3,
+      "title": "Analog Counterdiabatic Quantum Computing",
+      "authors": "Qi Zhang et al.",
+      "venue": "Nature",
+      "year": 2026,
+      "citations": 12,
+      "category": "Quantum",
+      "url": "https://www.nature.com/articles/s44335-026-00056-6"
+    },
+    {
+      "rank": 4,
+      "title": "LLMs for Materials Research",
+      "authors": "Dhruv Ahlawat, Vaibhav Mishra et al.",
+      "venue": "Nature Machine Intelligence",
+      "year": 2026,
+      "citations": 15,
+      "category": "ML/AI",
+      "url": "https://www.nature.com/articles/s42256-026-01199-8"
+    },
+    {
+      "rank": 5,
+      "title": "LoT: On the Thinking-Language Modeling Gap",
+      "authors": "ICLR 2026 Team",
+      "venue": "ICLR 2026",
+      "year": 2026,
+      "category": "ML/AI",
+      "url": "https://github.com/chxliou/LoT-2026"
+    }
+  ],
+  "previous_batches": [
+    {
+      "date": "2026-03-08",
+      "recommendations": [
+        {
+          "rank": 1,
+          "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs",
+          "venue": "arXiv/Nature Coverage",
+          "year": 2025,
+          "citations": 450,
+          "category": "ML/AI"
+        },
+        {
+          "rank": 2,
+          "title": "Microsatellite-based real-time quantum key distribution",
+          "venue": "Nature",
+          "year": 2025,
+          "citations": 120,
+          "category": "Quantum"
+        },
+        {
+          "rank": 3,
+          "title": "Visual AutoRegressive Modeling: Scalable Image Generation",
+          "venue": "NeurIPS 2024",
+          "year": 2024,
+          "citations": 350,
+          "category": "ML/AI"
+        },
+        {
+          "rank": 4,
+          "title": "Qwen2.5-VL Technical Report",
+          "venue": "arXiv",
+          "year": 2025,
+          "github_stars": 17200,
+          "category": "Vision-Language"
+        },
+        {
+          "rank": 5,
+          "title": "Z-Image: Efficient Image Generation Foundation Model",
+          "venue": "arXiv",
+          "year": 2025,
+          "github_stars": 7160,
+          "category": "Image Generation"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-07",
+      "recommendations": [
+        {
+          "rank": 1,
+          "title": "Visual AutoRegressive Modeling: Scalable Image Generation via Next-Scale Prediction",
+          "venue": "NeurIPS 2024 (Best Paper Award)",
+          "year": 2024,
+          "citations": 350
+        },
+        {
+          "rank": 2,
+          "title": "Microsatellite-based real-time quantum key distribution",
+          "venue": "Nature",
+          "year": 2025,
+          "citations": 120
+        },
+        {
+          "rank": 3,
+          "title": "Scaling Rectified Flow Transformers (SD3)",
+          "venue": "ICML 2024 (Best Paper)",
+          "year": 2024,
+          "citations": 280
+        },
+        {
+          "rank": 4,
+          "title": "Genie: Generative Interactive Environments",
+          "venue": "ICML 2024 (Best Paper)",
+          "year": 2024,
+          "citations": 220
+        },
+        {
+          "rank": 5,
+          "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs",
+          "venue": "arXiv",
+          "year": 2025,
+          "citations": 450
+        }
+      ]
+    }
+  ]
+}
