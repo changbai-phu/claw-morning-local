@@ -1,10 +1,9 @@
 # Claw-Morning Local
 
-> Standalone version of Claw-Morning that runs **WITHOUT AI dependency**. (Local version of one of skills used in my openclaw - if interested, checkout my `claw-skills` for AI version)
+> Standalone version of Claw-Morning that runs WITHOUT AI dependency. (Local version of one of skills used in my openclaw - if interested, checkout my `claw-skills` for AI version)
 
 ## Overview
-
-Claw-Morning Local is a CLI tool that generates daily research briefings by fetching data from public APIs (ArXiv, GitHub, Semantic Scholar, HuggingFace) and generating HTML reports.
+Claw-Morning Local is a CLI-based automation tool that compiles a daily research briefing by collecting updates across several categories, including newly published papers, influential research with rising citations, trending repositories, and curated AI/ML news. The system processes the collected information into a structured HTML report and delivers it to Feishu at a scheduled time each day. It also maintains historical records for certain sources, enabling ongoing tracking of notable papers and research trends.
 
 ## Short Demo
 ![Claw-Morning-Short-Demo-gif](claw-morning-short-demo.gif)
